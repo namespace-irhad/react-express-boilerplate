@@ -1,0 +1,25 @@
+{
+  "name": "@boilerplate/server",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@sentry/node": "^5.27.3",
+    "@sentry/tracing": "^5.27.3",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-rate-limit": "^5.1.3",
+    "helmet": "^4.2.0",
+    "log-symbols": "^4.0.0",
+    "log4js": "^6.3.0",
+    "morgan": "^1.10.0",
+    "pino": "^6.7.0"
+  },
+  "scripts": {
+    "clean": "npx rimraf build",
+    "build": "babel --root-mode upward src -s -D -d build",
+    "start": "nodemon --exec babel-node --root-mode upward src/bin/www.js",
+    "start:prod": "yarn clean && yarn build && pm2 start build/bin/www.js --name @boilerplate/server"
+  }
+}
